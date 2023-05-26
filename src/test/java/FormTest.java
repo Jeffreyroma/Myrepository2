@@ -3,6 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -29,7 +30,7 @@ public class FormTest {
         WebElement viewPasswordButton = driver.findElement(By.xpath("//span[@class=\"view-password-button\"]"));
         viewPasswordButton.click();
 
-        WebElement registrationButton = driver.findElement(By.xpath("//a[@id=\"signup\"]"));
+        WebElement registrationButton = driver.findElement(By.id("signup"));
         registrationButton.click();
 
         WebElement selectButton = driver.findElement(By.xpath("//select[@class=\"step__input\"]"));
@@ -37,6 +38,8 @@ public class FormTest {
 
         WebElement selectCountryButton = driver.findElement(By.xpath("//option[@value=\"AUS\"]"));
         selectCountryButton.click();
+
+        Assert.assertTrue(selectCountryButton.getText().contains("Австралия"));
     }
 
     @AfterMethod
