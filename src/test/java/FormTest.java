@@ -1,7 +1,7 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
+import org.example.pages.AuthorizationFormPage;
+import org.example.pages.RegistrationFormPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -10,6 +10,8 @@ import org.testng.annotations.Test;
 
 public class FormTest {
     private WebDriver driver;
+    private AuthorizationFormPage authorizationFormPage;
+    private RegistrationFormPage registrationFormPage;
 
     @BeforeMethod
     public void setUp() {
@@ -17,29 +19,21 @@ public class FormTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://eu.battle.net/login/ru/");
+        authorizationFormPage = new AuthorizationFormPage(driver);
+        registrationFormPage = new RegistrationFormPage(driver);
     }
 
     @Test
     public void checkRegistrationFormData() {
-        WebElement emailField = driver.findElement(By.xpath("//input[@name=\"accountName\"]"));
-        emailField.sendKeys("romamakarcikov@gmail.com");
+        authorizationFormPage.enterEmail("romamakarcikov@gmail.com");
+        authorizationFormPage.enterPassword("123456789");
+        authorizationFormPage.clickViewPasswordButton();
+        authorizationFormPage.clickRegistrationButton();
 
-        WebElement passwordField = driver.findElement(By.xpath("//input[@name=\"password\"]"));
-        passwordField.sendKeys("123456789");
+        registrationFormPage.clickSelectCountryButton();
+        registrationFormPage.clickSelectSpecificCountryButton();
 
-        WebElement viewPasswordButton = driver.findElement(By.xpath("//span[@class=\"view-password-button\"]"));
-        viewPasswordButton.click();
-
-        WebElement registrationButton = driver.findElement(By.id("signup"));
-        registrationButton.click();
-
-        WebElement selectButton = driver.findElement(By.xpath("//select[@class=\"step__input\"]"));
-        selectButton.click();
-
-        WebElement selectCountryButton = driver.findElement(By.xpath("//option[@value=\"AUS\"]"));
-        selectCountryButton.click();
-
-        Assert.assertTrue(selectCountryButton.getText().contains("Австралия"));
+        Assert.assertTrue(registrationFormPage.getSelectSpecificCountryButton().getText().contains("Австралия"));
     }
 
     @AfterMethod
