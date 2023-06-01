@@ -3,7 +3,6 @@ package org.example.driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.time.Duration;
 import java.util.ResourceBundle;
 
@@ -12,6 +11,7 @@ public class DriverManager {
     static ResourceBundle bundle = ResourceBundle.getBundle("test_framework");
 
     private static WebDriver driver = null;
+
     public DriverManager() {
     }
 

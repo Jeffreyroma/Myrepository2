@@ -1,16 +1,12 @@
 package org.example.pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class RegistrationFormPage {
-
-    final WebDriver driver;
+public class RegistrationFormPage extends BasePage {
 
     public RegistrationFormPage(WebDriver driver) {
-        PageFactory.initElements(driver,this);
-        this.driver = driver;
     }
 
     @FindBy(xpath = "//select[@class=\"step__input\"]")

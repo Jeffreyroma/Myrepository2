@@ -1,17 +1,13 @@
 package org.example.pages;
+
 import org.example.utils.Waiters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class AuthorizationFormPage {
-
-    final WebDriver driver;
+public class AuthorizationFormPage extends BasePage {
 
     public AuthorizationFormPage(WebDriver driver) {
-        PageFactory.initElements(driver,this);
-        this.driver = driver;
     }
 
     @FindBy(xpath = "//input[@name=\"accountName\"]")
@@ -24,7 +20,7 @@ public class AuthorizationFormPage {
     private WebElement viewPasswordButton;
 
     @FindBy(id = "signup")
-    private  WebElement registrationButton;
+    private WebElement registrationButton;
 
 
     public void enterEmail(String email) {
