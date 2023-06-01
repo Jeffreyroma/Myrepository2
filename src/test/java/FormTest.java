@@ -10,18 +10,8 @@ import org.testng.annotations.Test;
 
 public class FormTest {
     private WebDriver driver;
-    private AuthorizationFormPage authorizationFormPage;
-    private RegistrationFormPage registrationFormPage;
-
-    @BeforeMethod
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://eu.battle.net/login/ru/");
-        authorizationFormPage = new AuthorizationFormPage(driver);
-        registrationFormPage = new RegistrationFormPage(driver);
-    }
+     AuthorizationFormPage authorizationFormPage = new AuthorizationFormPage(driver);
+     RegistrationFormPage registrationFormPage = new RegistrationFormPage(driver);
 
     @Test
     public void checkRegistrationFormData() {
@@ -34,10 +24,5 @@ public class FormTest {
         registrationFormPage.clickSelectSpecificCountryButton();
 
         Assert.assertTrue(registrationFormPage.getSelectSpecificCountryButton().getText().contains("Австралия"));
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
     }
 }
