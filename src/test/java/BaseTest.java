@@ -1,6 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.example.pages.AuthorizationFormPage;
-import org.example.pages.RegistrationFormPage;
+import org.example.driver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -12,14 +11,11 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://eu.battle.net/login/ru/");
+        driver = DriverManager.getDriver();
     }
 
     @AfterMethod
     public void tearDown() {
-        driver.quit();
+        DriverManager.closeDriver();
     }
 }
