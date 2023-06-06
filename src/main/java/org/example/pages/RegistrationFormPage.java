@@ -6,7 +6,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class RegistrationFormPage extends BasePage {
 
+    protected WebDriver driver;
+
     public RegistrationFormPage(WebDriver driver) {
+        super(driver);
     }
 
     @FindBy(xpath = "//select[@class=\"step__input\"]")

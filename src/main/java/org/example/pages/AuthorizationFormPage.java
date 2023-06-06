@@ -7,7 +7,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class AuthorizationFormPage extends BasePage {
 
+    protected WebDriver driver;
+
     public AuthorizationFormPage(WebDriver driver) {
+        super(driver);
     }
 
     @FindBy(xpath = "//input[@name=\"accountName\"]")

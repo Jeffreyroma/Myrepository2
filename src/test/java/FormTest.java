@@ -4,12 +4,18 @@ import org.example.pages.RegistrationFormPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class FormTest extends BaseTest {
     protected WebDriver driver;
     private AuthorizationFormPage authorizationFormPage;
     private RegistrationFormPage registrationFormPage;
+
+    @DataProvider(name = "data-provider")
+    public Object[][] dpMethod() {
+        return new Object[][]{{"roma@gmail.com"},{"romamakarcikov@gmail.com"}};
+    }
 
     @BeforeClass
     public void preparationFormTest() {
@@ -18,9 +24,9 @@ public class FormTest extends BaseTest {
         registrationFormPage = new RegistrationFormPage(driver);
     }
 
-    @Test
-    public void checkRegistrationFormData() {
-        authorizationFormPage.enterEmail("romamakarcikov@gmail.com");
+    @Test(dataProvider = "data-provider")
+    public void checkRegistrationFormData(String email) {
+        authorizationFormPage.enterEmail(email);
         authorizationFormPage.enterPassword("123456789");
         authorizationFormPage.clickViewPasswordButton();
         authorizationFormPage.clickRegistrationButton();
