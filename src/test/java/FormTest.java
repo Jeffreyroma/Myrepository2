@@ -16,8 +16,8 @@ public class FormTest extends BaseTest {
     @DataProvider(name = "data-provider")
     public Object[][] dpMethod() {
         return new Object[][]{
-                {new UserData("romamakarcikov@gmail.com")},
-                {new UserData("ann@gmail.com")}
+                {new UserData("romamakarcikov@gmail.com","123123123")},
+                {new UserData("ann@gmail.com", "3333333")}
         };
     }
 
@@ -31,7 +31,7 @@ public class FormTest extends BaseTest {
     @Test(dataProvider = "data-provider")
     public void checkRegistrationFormData(UserData userData) {
         authorizationFormPage.enterEmail(userData.getEmail());
-        authorizationFormPage.enterPassword("123456789");
+        authorizationFormPage.enterPassword(userData.getPassword());
         authorizationFormPage.clickViewPasswordButton();
         authorizationFormPage.clickRegistrationButton();
 
