@@ -2,24 +2,16 @@ import org.example.driver.DriverManager;
 import org.example.models.UserData;
 import org.example.pages.AuthorizationFormPage;
 import org.example.pages.RegistrationFormPage;
+import org.example.utils.JsonReader;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class FormTest extends BaseTest {
     protected WebDriver driver;
     private AuthorizationFormPage authorizationFormPage;
     private RegistrationFormPage registrationFormPage;
-
-    @DataProvider(name = "data-provider")
-    public Object[][] dpMethod() {
-        return new Object[][]{
-                {new UserData("romamakarcikov@gmail.com","123123123")},
-                {new UserData("ann@gmail.com", "3333333")}
-        };
-    }
 
     @BeforeClass
     public void preparationFormTest() {
@@ -28,7 +20,7 @@ public class FormTest extends BaseTest {
         registrationFormPage = new RegistrationFormPage(driver);
     }
 
-    @Test(dataProvider = "data-provider")
+    @Test(dataProvider = "userData",dataProviderClass = JsonReader.class)
     public void checkRegistrationFormData(UserData userData) {
         authorizationFormPage.enterEmail(userData.getEmail());
         authorizationFormPage.enterPassword(userData.getPassword());
