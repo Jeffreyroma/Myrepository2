@@ -1,7 +1,5 @@
 import org.example.driver.DriverManager;
 import org.example.models.UserData;
-import org.example.pages.AuthorizationFormPage;
-import org.example.pages.RegistrationFormPage;
 import org.example.steps.AuthorizationFormStep;
 import org.example.steps.RegistrationFormStep;
 import org.example.utils.JsonReader;
@@ -12,9 +10,6 @@ import org.testng.annotations.Test;
 
 public class FormTest extends BaseTest {
     protected WebDriver driver;
-    private AuthorizationFormPage authorizationFormPage;
-    private RegistrationFormPage registrationFormPage;
-
     private RegistrationFormStep registrationFormStep;
 
     private AuthorizationFormStep authorizationFormStep;
@@ -26,7 +21,7 @@ public class FormTest extends BaseTest {
         authorizationFormStep = new AuthorizationFormStep(driver);
     }
 
-    @Test(dataProvider = "userData",dataProviderClass = JsonReader.class)
+    @Test(dataProvider = "userData", dataProviderClass = JsonReader.class)
     public void checkRegistrationFormData(UserData userData) {
         authorizationFormStep.enterEmail(userData.getEmail());
         authorizationFormStep.enterPassword(userData.getPassword());
