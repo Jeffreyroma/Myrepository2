@@ -27,25 +27,23 @@ public class AuthorizationFormPage extends BasePage {
     @FindBy(id = "signup")
     private WebElement registrationButton;
 
-
-    public void enterEmail(String email) {
-        log.info("Enter email");
-        Waiters.waitForVisibility(emailField);
-        emailField.sendKeys(email);
+    public WebElement getEmailField() {
+        return emailField;
     }
 
-    public void enterPassword(String password) {
-        log.info("Enter password");
-        passwordField.sendKeys(password);
+    public void setEmailField(WebElement emailField) {
+        this.emailField = emailField;
     }
 
-    public void clickViewPasswordButton() {
-        log.info("Click view button");
-        viewPasswordButton.click();
+    public WebElement getPasswordField() {
+        return passwordField;
     }
 
-    public void clickRegistrationButton() {
-        log.info("Click registration button");
-        registrationButton.click();
+    public WebElement getViewPasswordButton() {
+        return viewPasswordButton;
+    }
+
+    public WebElement getRegistrationButton() {
+        return registrationButton;
     }
 }

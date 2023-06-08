@@ -2,6 +2,8 @@ import org.example.driver.DriverManager;
 import org.example.models.UserData;
 import org.example.pages.AuthorizationFormPage;
 import org.example.pages.RegistrationFormPage;
+import org.example.steps.AuthorizationFormStep;
+import org.example.steps.RegistrationFormStep;
 import org.example.utils.JsonReader;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -13,23 +15,27 @@ public class FormTest extends BaseTest {
     private AuthorizationFormPage authorizationFormPage;
     private RegistrationFormPage registrationFormPage;
 
+    private RegistrationFormStep registrationFormStep;
+
+    private AuthorizationFormStep authorizationFormStep;
+
     @BeforeClass
     public void preparationFormTest() {
         driver = DriverManager.getDriver();
-        authorizationFormPage = new AuthorizationFormPage(driver);
-        registrationFormPage = new RegistrationFormPage(driver);
+        registrationFormStep = new RegistrationFormStep(driver);
+        authorizationFormStep = new AuthorizationFormStep(driver);
     }
 
     @Test(dataProvider = "userData",dataProviderClass = JsonReader.class)
     public void checkRegistrationFormData(UserData userData) {
-        authorizationFormPage.enterEmail(userData.getEmail());
-        authorizationFormPage.enterPassword(userData.getPassword());
-        authorizationFormPage.clickViewPasswordButton();
-        authorizationFormPage.clickRegistrationButton();
+        authorizationFormStep.enterEmail(userData.getEmail());
+        authorizationFormStep.enterPassword(userData.getPassword());
+        authorizationFormStep.clickViewPasswordButton();
+        authorizationFormStep.clickRegistrationButton();
 
-        registrationFormPage.clickSelectCountryButton();
-        registrationFormPage.clickSelectSpecificCountryButton();
+        registrationFormStep.clickSelectCountryButton();
+        registrationFormStep.clickSelectSpecificCountryButton();
 
-        Assert.assertTrue(registrationFormPage.getSelectSpecificCountryButton().getText().contains("Австралия"));
+        Assert.assertTrue(registrationFormStep.getSelectSpecificCountryButton().getText().contains("Австралия"));
     }
 }

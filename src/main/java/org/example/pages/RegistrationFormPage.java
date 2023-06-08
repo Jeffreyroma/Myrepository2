@@ -20,17 +20,11 @@ public class RegistrationFormPage extends BasePage {
     @FindBy(xpath = "//option[@value=\"AUS\"]")
     private WebElement selectSpecificCountryButton;
 
+    public WebElement getSelectCountryButton() {
+        return selectCountryButton;
+    }
+
     public WebElement getSelectSpecificCountryButton() {
         return selectSpecificCountryButton;
-    }
-
-    public void clickSelectCountryButton() {
-        log.info("Click select button of country");
-        selectCountryButton.click();
-    }
-
-    public void clickSelectSpecificCountryButton() {
-        log.info("Click select button of specific country ");
-        selectSpecificCountryButton.click();
     }
 }
