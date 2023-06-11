@@ -30,10 +30,12 @@ public class AuthorizationFormStep {
         authorizationFormPage.getViewPasswordButton().click();
     }
 
-    public void clickRegistrationButton() {
-        log.info("Click registration button");
-        authorizationFormPage.getRegistrationButton().click();
+    public void clickSubmitButton() {
+        log.info("Click submit button");
+        authorizationFormPage.getSubmitButton().click();
     }
 
-
+    public String getUserDataText() {
+       return authorizationFormPage.getEmailField().getText();
+    }
 }

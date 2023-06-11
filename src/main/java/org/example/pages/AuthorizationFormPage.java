@@ -23,15 +23,11 @@ public class AuthorizationFormPage extends BasePage {
     @FindBy(xpath = "//span[@class=\"view-password-button\"]")
     private WebElement viewPasswordButton;
 
-    @FindBy(id = "signup")
-    private WebElement registrationButton;
+    @FindBy(id ="submit")
+    private WebElement submitButton;
 
     public WebElement getEmailField() {
         return emailField;
-    }
-
-    public void setEmailField(WebElement emailField) {
-        this.emailField = emailField;
     }
 
     public WebElement getPasswordField() {
@@ -42,7 +38,7 @@ public class AuthorizationFormPage extends BasePage {
         return viewPasswordButton;
     }
 
-    public WebElement getRegistrationButton() {
-        return registrationButton;
+    public WebElement getSubmitButton() {
+        return submitButton;
     }
 }
